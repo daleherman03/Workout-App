@@ -38,7 +38,7 @@ const Router = createHashRouter([{
             element: <Search />
         },
         {
-            path:"/exercise/",
+            path:"/exercise/:name",
             element: <Exercise />
         },
         {

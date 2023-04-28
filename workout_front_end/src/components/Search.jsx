@@ -1,27 +1,36 @@
 import { useContext, useState } from "react";
-import { searchByName, searchByMuscle } from "../utilities";
+import { searchByName, searchByMuscle, searchByBodyPart } from "../utilities";
+import { Link } from "react-router-dom";
+import { UserContext, dataContext } from '../App';
 
 export const Search = () => {
     const [searchName, setSearchName] = useState("");
     const [searchMuscle, setSearchMuscle] = useState("");
+    const [searchBodyPart, setSearchBodyPart] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [user, setUser] = useContext(UserContext)
+    const [data, setData] = useContext(dataContext);
 
     const handleSearchByName = async (e) => {
         e.preventDefault();
         const results = await searchByName(searchName);
         setSearchResults(results);
         setSearchName("");
-        setSearchMuscle("");
     };
 
     const handleSearchByMuscle = async (e) => {
         e.preventDefault();
         const results = await searchByMuscle(searchMuscle);
         setSearchResults(results);
-        console.log(results);
-        setSearchName("");
         setSearchMuscle("");
-      };
+    };
+
+    const handleSearchByBodyPart = async (e) => {
+        e.preventDefault();
+        const results = await searchByBodyPart(searchBodyPart);
+        setSearchResults(results);
+        setSearchBodyPart("");
+    };
 
     return (
         <>
@@ -67,12 +76,42 @@ export const Search = () => {
                 <input type="submit" value="Search" />
             </form>
 
+            <h3>Search Exercise by Major Muscle Area</h3>
+            <h5>List of Major Muscle Areas</h5>
+            <ul>
+                <li>back</li>
+                <li>cardio</li>
+                <li>chest</li>
+                <li>lower arms</li>
+                <li>lower legs</li>
+                <li>neck</li>
+                <li>shoulders</li>
+                <li>upper arms</li>
+                <li>upper legs</li>
+                <li>waist</li>
+            </ul>
+            <form onSubmit={handleSearchByBodyPart}>
+                <input
+                    placeholder="Enter Body Part"
+                    value={searchBodyPart}
+                    onChange={(e) => setSearchBodyPart(e.target.value)}
+                />
+                <input type="submit" value="Search" />
+            </form>
+
             {searchResults.length > 0 && (
                 <>
                     <h3>Search Results</h3>
                     <ul>
                         {searchResults.map((result) => (
-                            <li key={result.id}>{result.name}</li>
+                            <li key={result.id}>
+                                <Link 
+                                onClick={() => setData(result)}
+                                to={`/exercise/${result.name}`}
+                                >
+                                    {result.name}
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </>

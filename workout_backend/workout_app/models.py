@@ -1,29 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.apps import apps
 
-class Exercises(models.Model):
-    name = models.CharField(max_length=255)
-    type = models.CharField(max_length=255)
-    equipment = models.CharField(max_length=255)
-    difficulty = models.CharField(max_length=255)
-    instructions = models.TextField()
-
-class Log(models.Model):
-    exercise = models.ForeignKey(Exercises, on_delete=models.CASCADE, null = True)
+class Exercise(models.Model):
+    exercise_name = models.CharField(max_length=255)
+    sets = models.IntegerField(default=0)
     weight = models.IntegerField(default=0)
-    reps = models.IntegerField(default=0)
+    rep_range = models.CharField(default=0)
+
+class Workout_Log(models.Model):
+    name = models.CharField(max_length=255, null=True, blank=True)
+    date = models.CharField(max_length=255, null=True, blank=True)
+    exercises = models.ManyToManyField(Exercise, related_name='workout_logs', null=True)
 
 class History(models.Model):
-    name = models.CharField(max_length=255)
-    date = models.DateField()
-    log = models.ForeignKey(Log, on_delete=models.CASCADE, null = True)
+    workout_logs = models.ManyToManyField(Workout_Log, related_name='history', null=True)
 
 class User(AbstractUser):
-    email = models.EmailField(blank = False, null = False, unique = True)
-    name = models.CharField(max_length = 255, null = False, blank = False)
-    history = models.ForeignKey(History, on_delete=models.CASCADE, null = True)
+    email = models.EmailField(blank=False, null=False, unique=True)
+    name = models.CharField(max_length=255, null=False, blank=False)
+    workout_history = models.OneToOneField(History, on_delete=models.CASCADE, null=True, blank=True)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-    
+
     def __str__(self):
         return f"{self.name} | {self.email}"
+    
+apps.register_model(User, model=AbstractUser)
