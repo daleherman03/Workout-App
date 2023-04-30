@@ -22,8 +22,5 @@ class User(AbstractUser):
     workout_history = models.OneToOneField(History, on_delete=models.CASCADE, null=True, blank=True)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-
-    def __str__(self):
-        return f"{self.name} | {self.email}"
     
 apps.register_model(User, model=AbstractUser)

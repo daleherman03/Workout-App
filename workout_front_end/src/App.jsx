@@ -1,20 +1,20 @@
 import { createContext, useEffect, useState } from "react";
 import "./App.css";
-import { currUser, logOut } from "./utilities";
+import { currUser } from "./utilities";
 import { getToken } from "./components/CsrfToken";
 import { Outlet } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 
-export const UserContext = createContext([])
-export const ExerciseLogContext = createContext(null)
-export const dataContext = createContext(null)
+export const UserContext = createContext([]);
+export const ExerciseLogContext = createContext(null);
+export const dataContext = createContext(null);
 
 function App() {
   const [user, setUser] = useState(null);
   const [exerciseLog, setExerciseLog] = useState([]);
   const [data, setData] = useState(null);
 
-  getToken()
+  getToken();
 
   useEffect(() => {
     const getCurrUser = async () => {
@@ -22,6 +22,8 @@ function App() {
     };
     getCurrUser();
   }, []);
+
+
 
   return (
     <div className="App">

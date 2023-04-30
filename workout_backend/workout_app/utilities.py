@@ -29,7 +29,6 @@ def sign_up(data):
 def log_in(request):
     email = request.data['email']
     password = request.data['password']
-    print(email, password)
     user = authenticate(username = email , password = password)
     if user is not None and user.is_active:
         try:
@@ -81,5 +80,18 @@ def submit_log(data, user):
     history.save()
 
 
-        
+def get_history(user):
+    history = serialize('json', user.workout_history.workout_logs.all())
+    history_workable = json.loads(history)
+    return JsonResponse(history_workable, safe=False)
 
+
+def get_log(pk):
+    try:
+        workout_log = Workout_Log.objects.get(pk=pk)
+        exercises = workout_log.exercises.all()
+        serialized_exercises = serialize('json', exercises)
+        exercises_workable = json.loads(serialized_exercises)
+        return exercises_workable
+    except Workout_Log.DoesNotExist:
+        return None

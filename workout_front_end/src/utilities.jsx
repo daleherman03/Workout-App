@@ -17,7 +17,7 @@ export const logIn = async(email, password, setUser) => {
         'email' : email,
         'password' : password
     })
-
+    console.log(response.data.success)
     setUser(response.data)
 }
 
@@ -95,9 +95,26 @@ export const searchByBodyPart = async(bodyPart) => {
 export const submitLog = async (workoutData) => {
     try {
         const response = await axios.post('/user/log/', workoutData);
-        console.log(response.data.success);
-        return response.data.success;
+        return response.data.Log_Submitted;
     } catch (error) {
         console.error(error);
     }
 };
+
+export const getHistory = async () => {
+    try {
+        const response = await axios.get('/user/history/');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getLog = async (pk) => {
+    try {
+        const response = await axios.post('/user/history/', {'pk':pk});
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

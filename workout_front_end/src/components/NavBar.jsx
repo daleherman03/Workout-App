@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 import { logOut } from "../utilities"
 import React, { useState, useContext } from 'react';
-import { UserContext} from '../App';
+import { UserContext } from '../App';
 
 export const NavBar = ()=> {
     const [user, setUser] = useContext(UserContext);
+
     return (
         <>
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">

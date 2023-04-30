@@ -106,7 +106,10 @@ export const Log = () => {
                     </Link>
                 </div>
             ))}
-            <button type="submit" class="btn btn-dark" onClick={() => submitLog(workoutData)}>Submit Log</button>
+            <button type="submit" class="btn btn-dark" onClick={() => {
+                submitLog(workoutData);
+                setExerciseLog(null);
+                }}>Submit Log</button>
         </div>     
     );
 };
