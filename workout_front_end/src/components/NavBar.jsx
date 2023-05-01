@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { logOut } from "../utilities"
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../App';
+import { Button } from "react-bootstrap";
 
 export const NavBar = ()=> {
     const [user, setUser] = useContext(UserContext);
@@ -34,8 +35,11 @@ export const NavBar = ()=> {
                             <li class="nav-item">
                                 <Link class="nav-link" to={'/history/'}>History</Link>
                             </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" to={'/recipe/'}>Recipe</Link>
+                            </li>
                             <li>
-                                <button onClick={()=>logOut(setUser)}>LOG OUT</button>
+                                <Button variant="primary" onClick={()=>logOut(setUser)}>LOG OUT</Button>
                             </li>
                         </ul>
                 </div>

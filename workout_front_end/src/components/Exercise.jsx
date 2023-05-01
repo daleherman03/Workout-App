@@ -15,18 +15,20 @@ export const Exercise = () => {
     }
 
     return (
-        <div class="card" style={{width: '18rem'}}>
-            <img src={data.gifUrl} class="card-img-top"/>
-            <div class="card-body">
-                <h5 class="card-title">{data.name}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Major Muscle Area: {data.bodyPart}</li>
-                <li class="list-group-item">Targeted Muscle: {data.target}</li>
-                <li class="list-group-item">Equipment Needed: {data.equipment}</li>
-            </ul>
-            <div class="card-body">
-            <button type="button" class="btn btn-dark" onClick={() => handleAddToLog(data)}>Add to Log</button>
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <div class="card" style={{width: '35rem'}}>
+                <img src={data.gifUrl} class="card-img-top"/>
+                <div class="card-body">
+                    <h5 class="card-title">{data.name}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Major Muscle Area: {data.bodyPart}</li>
+                    <li class="list-group-item">Targeted Muscle: {data.target}</li>
+                    <li class="list-group-item">Equipment Needed: {data.equipment}</li>
+                </ul>
+                <div class="card-body">
+                <button type="button" class="btn btn-dark" onClick={() => handleAddToLog(data)}>Add to Log</button>
+                </div>
             </div>
         </div>
     );

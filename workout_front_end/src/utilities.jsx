@@ -118,3 +118,21 @@ export const getLog = async (pk) => {
         console.error(error);
     }
 }
+
+export const getRecipe = async () => {
+    const options = {
+        method: 'GET',
+        url: 'https://random-recipes.p.rapidapi.com/ai-quotes/1',
+        headers: {
+          'X-RapidAPI-Key': '8a3fedd696mshebdd267afb94940p16fa4ajsn9bad1d29ee2d',
+          'X-RapidAPI-Host': 'random-recipes.p.rapidapi.com'
+        }
+      };
+      
+      try {
+          const response = await axios.request(options);
+          return response.data[0]
+      } catch (error) {
+          console.error(error);
+      }
+}

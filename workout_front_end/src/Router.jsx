@@ -8,6 +8,7 @@ import { Log } from "./components/Log";
 import { Search } from "./components/Search";
 import { LogRecord } from "./components/LogRecord";
 import { Exercise } from "./components/Exercise";
+import { Recipe } from "./components/Recipe";
 
 const Router = createHashRouter([{
     path: '/',
@@ -44,6 +45,10 @@ const Router = createHashRouter([{
         {
             path:"/LogRecord/",
             element: <LogRecord />
+        },
+        {
+            path:"/recipe/",
+            element: <Recipe />
         }
     ]
 }])

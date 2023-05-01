@@ -19,7 +19,7 @@ export const LogRecord = () => {
 
     return (
         <>
-            <Table striped bordered hover variant="dark">
+            <Table bordered style={{ color: 'white' }}>
             <thead>
                 <tr>
                 <th>Exercise Name</th>

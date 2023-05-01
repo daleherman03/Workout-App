@@ -92,7 +92,7 @@ export const Search = () => {
             </ul>
             <form onSubmit={handleSearchByBodyPart}>
                 <input
-                    placeholder="Enter Body Part"
+                    placeholder="Enter Muscle Group"
                     value={searchBodyPart}
                     onChange={(e) => setSearchBodyPart(e.target.value)}
                 />

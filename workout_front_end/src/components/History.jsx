@@ -18,7 +18,7 @@ export const History = () => {
     }, []);
 
     return (
-        <Table striped bordered hover variant="dark">
+        <Table class='table' bordered style={{ color: 'white' }}>
           <thead>
             <tr>
               <th>Workout Name</th>
